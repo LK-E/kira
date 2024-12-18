@@ -115,33 +115,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Configurez votre date limite
-        const countdownDate = new Date("Dec 31, 2024 23:59:59").getTime();
-
+        // Configurez la durée du compte à rebours : 15 jours et 5 heures
+        const countdownDuration = 15 * 24 * 60 * 60 * 1000 + 5 * 60 * 60 * 1000;
+        const countdownDate = new Date().getTime() + countdownDuration;
+    
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = countdownDate - now;
-
+    
             if (distance < 0) {
                 document.querySelector('.countdown').innerHTML = "Temps écoulé !";
                 return;
             }
-
+    
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+    
             document.getElementById("days").textContent = String(days).padStart(2, '0');
             document.getElementById("hours").textContent = String(hours).padStart(2, '0');
             document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
             document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
         }
-
+    
         // Mettre à jour toutes les secondes
         setInterval(updateCountdown, 1000);
         updateCountdown(); // Exécuter immédiatement
     });
+
+    const countdownDuration = 15 * 24 * 60 * 60 * 1000 + 5 * 60 * 60 * 1000;
+const countdownDate = new Date().getTime() + countdownDuration;
+
 
     function initMap() {
         // Coordonnées de Ngeme, Limbe
